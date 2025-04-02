@@ -7,6 +7,14 @@ pipeline{
         ''', name: 'action'
     }
     stages{
+         stage("GitHub checkout") {
+            steps {
+                script {
+ 
+                    git branch: 'master', url: 'https://github.com/clement2019/terraform-jenkins-aws.git' 
+                }
+            }
+        }
 
         stage("starting the process"){
             steps{
