@@ -11,7 +11,7 @@ pipeline{
             steps {
                 script {
  
-                    git branch: 'main', url: 'https://github.com/osagiefe/terraform-jenkins-aws.git' 
+                    git branch: 'master', url: 'https://github.com/osagiefe/terraform-jenkins-aws.git' 
                 }
             }
         }
