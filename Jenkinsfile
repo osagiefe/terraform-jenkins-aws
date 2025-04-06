@@ -11,7 +11,7 @@ pipeline{
             steps {
                 script {
  
-                    git branch: 'master', url: 'https://github.com/clement2019/terraform-jenkins-aws.git' 
+                    git branch: 'main', url: 'https://github.com/osagiefe/terraform-jenkins-aws.git' 
                 }
             }
         }
@@ -26,6 +26,20 @@ pipeline{
             steps{
             
                 sh'terraform init'
+                
+            }
+        }
+        stage("Terraform format stage"){
+            steps{
+            
+                sh'terraform fmt'
+                
+            }
+        }
+        stage("Terraform validate stage"){
+            steps{
+            
+                sh'terraform validate'
                 
             }
         }
@@ -47,8 +61,8 @@ pipeline{
             steps{
                 
                 
-                echo "You want to ${params.action} the resources highlted"
-                sh'terraform ${action} -auto-approve'
+                echo "You want to ${params.action} the resources highlighted"
+                sh'terraform ${action} --auto-approve'
             }
          }
          stage("Terraform destroy stage"){
@@ -62,8 +76,8 @@ pipeline{
             steps{
                 
                 
-                echo "You want to ${params.action} the resources highlted"
-                sh'terraform ${action} -auto-approve'
+                echo "You want to ${params.action} the resources highlighted"
+                sh'terraform ${action} --auto-approve'
             }
          }
     }

@@ -11,17 +11,17 @@
 #}
 #}
 
-resource "aws_instance" "jenkinsapp-server" {
+resource "aws_instance" "jenkins-machine" {
   #ami                         = data.aws_ami.latest-amazon-linux-image.id
   ami                         = var.ami
   instance_type               = var.instance_type
-  key_name                    = "devopskey2"
+  key_name                    = "jenkins"
   subnet_id                   = aws_subnet.myapp-subnet-1.id
   vpc_security_group_ids      = [aws_default_security_group.default-sg.id]
   availability_zone           = var.avail_zone
   associate_public_ip_address = true
   user_data                   = file("new-jenkins-script.sh")
   tags = {
-    Name = "${var.env_prefix}-jenkins-server"
+    Name = "${var.env_prefix}-jenkins-machine"
   }
 }
